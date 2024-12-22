@@ -1,0 +1,44 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <label for="name">Name:</label>
+  <input id="name" formControlName="name" type="text" />
+
+  <div formArrayName="emails">
+    <div *ngFor="let email of emails.controls; let i = index">
+      <label for="email{{i}}">Email {{i + 1}}:</label>
+      <input [formControlName]="i" type="email" />
+      <button type="button" (click)="removeEmail(i)">Remove</button>
+    </div>
+  </div>
+
+  <button type="button" (click)="addEmail()">Add Email</button>
+
+  <button type="submit" [disabled]="form.invalid">Submit</button>
+</form>
+
+<hr>
+<hr>
+<mat-form-field appearance="outline">
+  
+  <input matInput [(ngModel)]="selectedFruit" placeholder="Choose a fruit" (input)="onInputChange($event)" [matAutocomplete]="auto1" />
+  <mat-autocomplete #auto1="matAutocomplete">
+    <mat-option *ngFor="let fruit of filteredFruits" [value]="fruit">
+      {{ fruit }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+
+<hr>
+<hr>
+<form [formGroup]="myForm">
+  <mat-form-field appearance="fill">
+    <!-- <mat-label>Fruit</mat-label> -->
+    <input matInput [matAutocomplete]="auto" placeholder="Choose a fruit" (input)="onInputReactiveChange($event)" formControlName="fruit">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of options" [value]="option.name">
+        {{ option.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+<router-outlet></router-outlet>

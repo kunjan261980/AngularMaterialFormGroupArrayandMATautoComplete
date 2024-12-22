@@ -1,0 +1,10 @@
+::ng-deep {
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+       color: rgb(233, 7, 7);
+    }
+    mat-form-field {
+       .mat-hint, input, ::placeholder, .mat-form-field-label {
+          color: rgb(31, 15, 206);
+       }
+    }
+ }
